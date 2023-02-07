@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "300511752169",
+    "project_id": "project-my-collage",
+    "storage_bucket": "project-my-collage.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:300511752169:android:03e514723434a514132578",
+        "android_client_info": {
+          "package_name": "com.example.flutter_app1"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "300511752169-sk1mmhqi0pfbm77ma5tn124bg4fkg99r.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCbUv5W9D2pxN6QT2w6xZ3MwfF0EIckcOk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "300511752169-sk1mmhqi0pfbm77ma5tn124bg4fkg99r.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
