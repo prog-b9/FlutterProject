@@ -205,7 +205,6 @@ class _SideBarState extends State<SideBar> {
                       // passGoogleOrPhp = "";
                       // avatarGoogleOrPhp = "";
                       print("logout");
-                      funchideOrShowLogout();
                       Push(context, Login());
                     });
                   },

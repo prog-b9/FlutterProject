@@ -16,12 +16,12 @@ class AddMaterialCumulative extends StatefulWidget {
 }
 
 class _AddMaterialCumulativeState extends State<AddMaterialCumulative> {
-  // @override
-  // void initState() {
-  //   // TODO: implement initState
-  //   super.initState();
-  //   changesGradeFromNumToChar();
-  // }
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    changesGradeFromNumToChar();
+  }
 
   void _modalBottomSheet(BuildContext context) {
     showModalBottomSheet(
@@ -74,25 +74,29 @@ class _AddMaterialCumulativeState extends State<AddMaterialCumulative> {
                         ),
                         itemCount: gradesList.length,
                         itemBuilder: (context, index) {
-                          return Container(
-                            width: 100,
-                            height: 100,
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(20),
-                              color: const Color.fromARGB(100, 99, 138, 127),
-                            ),
-                            child: Center(
-                              child: TextButton(
-                                onPressed: () {
-                                  setState(
-                                    () {
-                                      chooseList.removeAt(ww);
-                                      chooseList.insert(ww, gradesList[index]);
-
-                                      Pop(context);
-                                    },
-                                  );
+                          return TextButton(
+                            onPressed: () {
+                              setState(
+                                () {
+                                  chooseList.removeAt(ww);
+                                  chooseList.insert(ww, gradesList[index]);
+                                  Pop(context);
                                 },
+                              );
+                            },
+                            style: TextButton.styleFrom(
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(20),
+                              ),
+                            ),
+                            child: Container(
+                              width: 100,
+                              height: 100,
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(20),
+                                color: const Color.fromARGB(100, 99, 138, 127),
+                              ),
+                              child: Center(
                                 child: Text(
                                   gradesList[index],
                                   style: const TextStyle(
@@ -168,32 +172,38 @@ class _AddMaterialCumulativeState extends State<AddMaterialCumulative> {
                         ),
                         itemCount: TimerList.length,
                         itemBuilder: (context, index) {
-                          return Container(
-                            width: 100,
-                            height: 100,
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(20),
-                              color: const Color.fromARGB(100, 99, 138, 127),
-                            ),
-                            child: Center(
-                                child: TextButton(
-                              onPressed: () {
-                                setState(() {
-                                  chooseListTimer.removeAt(ww);
-                                  chooseListTimer.insert(ww, TimerList[index]);
+                          return TextButton(
+                            onPressed: () {
+                              setState(() {
+                                chooseListTimer.removeAt(ww);
+                                chooseListTimer.insert(ww, TimerList[index]);
 
-                                  Pop(context);
-                                });
-                              },
-                              child: Text(
-                                TimerList[index].toString(),
-                                style: const TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 40,
-                                  fontWeight: FontWeight.bold,
+                                Pop(context);
+                              });
+                            },
+                            style: TextButton.styleFrom(
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(20),
+                              ),
+                            ),
+                            child: Container(
+                              width: 100,
+                              height: 100,
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(20),
+                                color: const Color.fromARGB(100, 99, 138, 127),
+                              ),
+                              child: Center(
+                                child: Text(
+                                  TimerList[index].toString(),
+                                  style: const TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 40,
+                                    fontWeight: FontWeight.bold,
+                                  ),
                                 ),
                               ),
-                            )),
+                            ),
                           );
                         },
                       ),
@@ -613,7 +623,7 @@ class _AddMaterialCumulativeState extends State<AddMaterialCumulative> {
                               resultGPAchar = "B";
                               resultGPAtitle = "جيد جداً";
                             } else if (resultGPAnumCumulative < 3.5 &&
-                                resultGPAnum >= 3.0) {
+                                resultGPAnumCumulative >= 3.0) {
                               resultGPAchar = "C+";
                               resultGPAtitle = "جيد مرتفع";
                             } else if (resultGPAnumCumulative < 3.0 &&

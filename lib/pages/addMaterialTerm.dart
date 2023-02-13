@@ -63,25 +63,29 @@ class _AddMaterialTermState extends State<AddMaterialTerm> {
                         ),
                         itemCount: gradesList.length,
                         itemBuilder: (context, index) {
-                          return Container(
-                            width: 100,
-                            height: 100,
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(20),
-                              color: const Color.fromARGB(100, 99, 138, 127),
-                            ),
-                            child: Center(
-                              child: TextButton(
-                                onPressed: () {
-                                  setState(
-                                    () {
-                                      chooseList.removeAt(ww);
-                                      chooseList.insert(ww, gradesList[index]);
-
-                                      Pop(context);
-                                    },
-                                  );
+                          return TextButton(
+                            onPressed: () {
+                              setState(
+                                () {
+                                  chooseList.removeAt(ww);
+                                  chooseList.insert(ww, gradesList[index]);
+                                  Pop(context);
                                 },
+                              );
+                            },
+                            style: TextButton.styleFrom(
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(20),
+                              ),
+                            ),
+                            child: Container(
+                              width: 100,
+                              height: 100,
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(20),
+                                color: const Color.fromARGB(100, 99, 138, 127),
+                              ),
+                              child: Center(
                                 child: Text(
                                   gradesList[index],
                                   style: const TextStyle(
@@ -157,32 +161,38 @@ class _AddMaterialTermState extends State<AddMaterialTerm> {
                         ),
                         itemCount: TimerList.length,
                         itemBuilder: (context, index) {
-                          return Container(
-                            width: 100,
-                            height: 100,
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(20),
-                              color: const Color.fromARGB(100, 99, 138, 127),
-                            ),
-                            child: Center(
-                                child: TextButton(
-                              onPressed: () {
-                                setState(() {
-                                  chooseListTimer.removeAt(ww);
-                                  chooseListTimer.insert(ww, TimerList[index]);
+                          return TextButton(
+                            onPressed: () {
+                              setState(() {
+                                chooseListTimer.removeAt(ww);
+                                chooseListTimer.insert(ww, TimerList[index]);
 
-                                  Pop(context);
-                                });
-                              },
-                              child: Text(
-                                TimerList[index].toString(),
-                                style: const TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 40,
-                                  fontWeight: FontWeight.bold,
+                                Pop(context);
+                              });
+                            },
+                            style: TextButton.styleFrom(
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(20),
+                              ),
+                            ),
+                            child: Container(
+                              width: 100,
+                              height: 100,
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(20),
+                                color: const Color.fromARGB(100, 99, 138, 127),
+                              ),
+                              child: Center(
+                                child: Text(
+                                  TimerList[index].toString(),
+                                  style: const TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 40,
+                                    fontWeight: FontWeight.bold,
+                                  ),
                                 ),
                               ),
-                            )),
+                            ),
                           );
                         },
                       ),
@@ -196,7 +206,6 @@ class _AddMaterialTermState extends State<AddMaterialTerm> {
       },
     );
   }
-
 
   @override
   Widget build(BuildContext context) {
@@ -213,7 +222,6 @@ class _AddMaterialTermState extends State<AddMaterialTerm> {
             Pop(context);
           },
         ),
-       
         backgroundColor: Colors.transparent,
         elevation: 0,
         title: Text(
@@ -488,13 +496,8 @@ class _AddMaterialTermState extends State<AddMaterialTerm> {
                       if (checkGrade.contains(false) ||
                           checkTimer.contains(false)) {
                         null;
-                        Fluttertoast.showToast(
-                          backgroundColor: Colors.redAccent,
-                          textColor: Colors.white,
-                          msg: "أدخل الساعة او رمز المعدل",
-                          toastLength: Toast.LENGTH_SHORT,
-                          fontSize: 17,
-                        );
+
+                        toastMsg("أدخل الساعة او رمز المعدل");
                       } else if (checkGrade.contains(true) &&
                           checkTimer.contains(true)) {
                         for (var i = 0; i < chooseList.length; i++) {

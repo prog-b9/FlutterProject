@@ -35,6 +35,7 @@ class _ResultGPAState extends State<ResultGPA> {
       resultGPACharHerePage = resultGPAchar;
       resultGPATitleHerePage = resultGPAtitle;
     }
+
     return Scaffold(
       backgroundColor: Color(darkBlueColor),
       appBar: AppBar(

@@ -23,6 +23,18 @@ class Homepage extends StatefulWidget {
 }
 
 class _HomepageState extends State<Homepage> {
+  Future GetDataUnversity() async {
+    
+    var response = await http.get(Uri.parse(api));
+    var responseBody = await jsonDecode(response.body);
+
+    if (response.statusCode == 200) {
+      setState(() {
+        data = responseBody;
+      });
+    }
+  }
+
   Future readToken() async {
     // WidgetsFlutterBinding.ensureInitialized();
     final SharedPreferences prefs = await SharedPreferences.getInstance();
@@ -82,7 +94,6 @@ class _HomepageState extends State<Homepage> {
               // passGoogleOrPhp = pass;
               // storage = username;
               saveToken(storage, email, pass);
-              funchideOrShowLogout();
 
               print("home pahe : 0");
             }
@@ -93,7 +104,6 @@ class _HomepageState extends State<Homepage> {
           // avatarGoogleOrPhp = avatarGoogle;
           if (usernameGoogle != null) {
             saveToken(usernameGoogle, emailGoogle, avatarGoogle);
-            funchideOrShowLogout();
           }
           print("home pahe : 1");
         }
@@ -107,6 +117,7 @@ class _HomepageState extends State<Homepage> {
   void initState() {
     // TODO: implement initState
     super.initState();
+    GetDataUnversity();
     // if (whatDoseLoginGoogleOrPhp == 0) {
     readToken();
     // } else if (whatDoseLoginGoogleOrPhp == 1) {
@@ -127,6 +138,7 @@ class _HomepageState extends State<Homepage> {
 
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
       appBar: AppBar(
         // clear arrow back from AppBar
@@ -339,6 +351,7 @@ class _HomepageState extends State<Homepage> {
                     ),
                   ],
                 ),
+                // for (var i = 0; i < 2; i++) 
                 CustomAllUnversity(
                   imgItem: data[0]["id"]["headerImg"],
                   unversityNameItem: data[0]["id"]["unversityTitle"],

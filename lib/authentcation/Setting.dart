@@ -48,7 +48,7 @@ class _SettingState extends State<Setting> {
       appBar: AppBar(
         leading: CustomBack(onPress: () {
           setState(() {
-            Push(context, Homepage());
+            Pop(context);
           });
         }),
         centerTitle: true,
@@ -197,29 +197,29 @@ class _SettingState extends State<Setting> {
                           ),
                         ],
                       ),
-                      if(whatDoseLoginGoogleOrPhp == 0)
-                      Positioned(
-                        bottom: 0,
-                        right: 5,
-                        child: IconButton(
-                          onPressed: () {
-                            if (storage == null) {
-                              Fluttertoast.showToast(
-                                backgroundColor: Colors.white,
-                                textColor: Color(blackColor),
-                                msg: "سجل دخول أولاً",
-                                toastLength: Toast.LENGTH_SHORT,
-                                fontSize: 17,
-                              );
-                            } else {
-                              Push(context, Edit());
-                            }
-                          },
-                          icon: Image.asset(
-                            "images/logo edit.png",
+                      if (whatDoseLoginGoogleOrPhp == 0)
+                        Positioned(
+                          bottom: 0,
+                          right: 5,
+                          child: IconButton(
+                            onPressed: () {
+                              if (storage == null) {
+                                Fluttertoast.showToast(
+                                  backgroundColor: Colors.white,
+                                  textColor: Color(blackColor),
+                                  msg: "سجل دخول أولاً",
+                                  toastLength: Toast.LENGTH_SHORT,
+                                  fontSize: 17,
+                                );
+                              } else {
+                                Push(context, Edit());
+                              }
+                            },
+                            icon: Image.asset(
+                              "images/logo edit.png",
+                            ),
                           ),
                         ),
-                      ),
                     ],
                   ),
                 ),
@@ -360,7 +360,9 @@ class _SettingState extends State<Setting> {
                                       fontSize: 17,
                                       color: Colors.white),
                                 ),
-                                const SizedBox(width: 10,),
+                                const SizedBox(
+                                  width: 10,
+                                ),
                                 const CircleAvatar(
                                   backgroundImage:
                                       AssetImage('images/logo help.png'),

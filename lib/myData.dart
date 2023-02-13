@@ -73,8 +73,9 @@ void toastMsg(String m) {
   Fluttertoast.showToast(
     backgroundColor: Colors.redAccent,
     textColor: Colors.white,
-    msg: m,
+    msg: "             $m             ",
     toastLength: Toast.LENGTH_SHORT,
+    webShowClose: false,
     fontSize: 17,
   );
 }
@@ -83,7 +84,7 @@ void toastMsgSuccess(String m) {
   Fluttertoast.showToast(
     backgroundColor: Colors.green,
     textColor: Colors.white,
-    msg: m,
+    msg: "             $m              ",
     toastLength: Toast.LENGTH_SHORT,
     fontSize: 17,
   );
@@ -343,7 +344,8 @@ class _CustomBtnState extends State<CustomBtn> {
 //
 //
 
-String ipconfig = "192.168.8.151";
+String ipconfig = "172.18.1.52";
+String api = "https://api.jsonserve.com/_-4Qng";
 
 TextEditingController controllerUsernamelogin = TextEditingController();
 TextEditingController controllerUsernameregister = TextEditingController();
@@ -360,14 +362,7 @@ TextEditingController controllerConfPassword = TextEditingController();
 // ignore: non_constant_identifier_names
 var show_pass = true;
 
-bool hideOrShowLogout = false;
-funchideOrShowLogout() {
-  if (storage != null || usernameGoogle != null) {
-    hideOrShowLogout = true;
-  } else {
-    hideOrShowLogout = false;
-  }
-}
+var hideOrShowLogout;
 
 String username = "";
 // this var for user pageHome
@@ -988,6 +983,9 @@ TextEditingController controllerCapacity = TextEditingController();
 TextEditingController controllerAttainment = TextEditingController();
 // step
 TextEditingController controllerStep = TextEditingController();
+
+// أحسب موزونتك أول  // موزونتك هي
+bool firstAccountMozonahOnOrOff = false;
 
 // highrSchool
 var resultHighSchoolRelation;

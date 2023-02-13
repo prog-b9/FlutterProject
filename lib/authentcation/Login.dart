@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_app1/authentcation/Register.dart';
 import 'package:flutter_app1/authentcation/Splash.dart';
@@ -10,6 +12,7 @@ import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 
 class Login extends StatefulWidget {
   @override
@@ -18,12 +21,14 @@ class Login extends StatefulWidget {
 
 class _Login extends State<Login> {
   // function save token
-  saveToken(String user, int id) async {
+  saveToken(String user, int id, bool logout) async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
     prefs.setString("storage", user);
     prefs.setInt("storageId", id);
+    prefs.setBool("storageLogout", logout);
     print(prefs.getString("storage"));
     print(prefs.getInt("storageId"));
+    print(prefs.getBool("storageLogout"));
   }
 
   Future readToken() async {
@@ -40,15 +45,16 @@ class _Login extends State<Login> {
     dataGoogle = await GoogleSignIn().signIn();
 
     whatDoseLoginGoogleOrPhp = 1;
+    hideOrShowLogout = true;
     print(dataGoogle);
     // print(dataGoogle.email);
     // print(dataGoogle.);
     emailGoogle = dataGoogle!.email;
     usernameGoogle = dataGoogle!.displayName;
     avatarGoogle = dataGoogle!.photoUrl;
-    saveToken(usernameGoogle, whatDoseLoginGoogleOrPhp);
-    funchideOrShowLogout();
+    saveToken(usernameGoogle, whatDoseLoginGoogleOrPhp, hideOrShowLogout);
 
+  
     Push(context, const Homepage());
 
     // print(dataGoogle.);
@@ -83,9 +89,11 @@ class _Login extends State<Login> {
       // userdata = true;
       usernameLogin = controllerUsernamelogin.text;
       whatDoseLoginGoogleOrPhp = 0;
+      hideOrShowLogout = true;
 
-      saveToken(usernameLogin, whatDoseLoginGoogleOrPhp);
-      funchideOrShowLogout();
+     
+
+      saveToken(usernameLogin, whatDoseLoginGoogleOrPhp, hideOrShowLogout);
 
       toastMsgSuccess("تم تسحيل الدخول بنجاح");
 

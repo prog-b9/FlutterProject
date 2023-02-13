@@ -30,7 +30,7 @@ class _CustomBtnBeforeGeadeAndTimerState
         return Container(
           margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
           child: SizedBox(
-            height: 400,
+            height:600,
             child: Column(
               // crossAxisAlignment: CrossAxisAlignment.center,
               // mainAxisAlignment: MainAxisAlignment.spaceAround,

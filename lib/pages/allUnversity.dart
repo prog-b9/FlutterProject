@@ -18,7 +18,7 @@ class _AllUnversityState extends State<AllUnversity> {
     return Scaffold(
       backgroundColor: Color(darkBlueColor),
       // backgroundColor: Color.fromARGB(255, 230, 255, 255),
-
+  
       appBar: AppBar(
         leading: CustomBack(onPress: () {
           Push(context, const Homepage());
@@ -234,11 +234,13 @@ class _AllUnversityState extends State<AllUnversity> {
                             }
                           }
                         }
+                        firstAccountMozonahOnOrOff = true;
                       }
 
                       // End Step
 
                     }
+
                     Push(context, AllMajors());
                   });
                 },

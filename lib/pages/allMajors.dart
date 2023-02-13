@@ -141,10 +141,10 @@ class _AllMajorsState extends State<AllMajors> {
                   //   ),
                   // ),
                   Container(),
-                  const Text(
-                    "أحسب موزونتك أول",
+                   Text(
+                    firstAccountMozonahOnOrOff == true ? "موزونتك هي " : "أحسب موزونتك أول",
                     textAlign: TextAlign.right,
-                    style: TextStyle(
+                    style: const TextStyle(
                       color: Colors.white,
                       fontSize: 25,
                       fontFamily: fontGoogleCairo,

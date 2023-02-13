@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_app1/authentcation/Login.dart';
 import 'package:flutter_app1/myData.dart';
 import 'package:flutter_app1/pages/homePage.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert';
 
 class Splash extends StatefulWidget {
   @override
@@ -10,16 +12,56 @@ class Splash extends StatefulWidget {
 }
 
 class _Splash extends State<Splash> {
-  //Colour Themes
-  var lightGreenColor = 0xff48D8A4;
-  var darkGreenColor = 0xff276367;
-  var darkBlueColor = 0xff182e3c;
-  var bgGreenColor = 0xffDFCDCD;
-  var whiteWithLightBlueColor = 0xffCDF3FF;
+  Future getData() async {
+    var url = Uri.http(ipconfig, 'getdata.php', {'q': '{http}'});
+    var response = await http.get(url);
+
+    if (response.statusCode == 200) {
+      var red = json.decode(response.body);
+      setState(() {
+        if (whatDoseLoginGoogleOrPhp == 0) {
+          for (var i = 0; i < red.length; i++) {
+            if (storage == red[i]["username"]) {
+              idAuth = int.parse(red[i]["id"]) - 1;
+              storage = red[idAuth]["username"].toString();
+              email = red[idAuth]["email"].toString();
+              pass = red[idAuth]["password"].toString();
+              // for Page Edit
+              controllerUsernameedit.text = storage;
+              controllerPasswordedit.text = pass;
+              controllerEmailedit.text = email;
+
+              // usernameGoogleOrPhp = storage;
+              // emailGoogleOrPhp = email;
+              // passGoogleOrPhp = pass;
+              // storage = username;
+
+              print("home pahe : 0");
+            }
+          }
+        }
+      });
+    }
+  }
+
+  Future GetDataUnversity() async {
+    var response = await http.get(Uri.parse(api));
+    var responseBody = await jsonDecode(response.body);
+
+    if (response.statusCode == 200) {
+      setState(() {
+        data = responseBody;
+      });
+    }
+  }
+
   //THIS IS SPLASH SCREEN
   @override
   void initState() {
     super.initState();
+    GetDataUnversity();
+    getData();
+
     Timer(const Duration(seconds: 3), () {
       if (storage != null || usernameGoogle != null) {
         Push(context, const Homepage());

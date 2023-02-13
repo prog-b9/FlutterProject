@@ -45,8 +45,8 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
   Future GetDataUnversity() async {
-    var responseUrl = "https://api.jsonserve.com/kSNv9K";
-    var response = await http.get(Uri.parse(responseUrl));
+   
+    var response = await http.get(Uri.parse(api));
     var responseBody = await jsonDecode(response.body);
 
     if (response.statusCode == 200) {
@@ -65,89 +65,25 @@ class _MyAppState extends State<MyApp> {
         storage = prefs.getString("storage");
         email = prefs.getString("storageEmail");
         pass = prefs.getString("storagePass");
+        hideOrShowLogout = prefs.getBool("storageLogout");
       } else if (whatDoseLoginGoogleOrPhp == 1) {
         usernameGoogle = prefs.getString("storage");
         emailGoogle = prefs.getString("storageEmail");
         avatarGoogle = prefs.getString("storagePass");
+        hideOrShowLogout = prefs.getBool("storageLogout");
       }
-      // print("storage : $storage");
-      // print("whatDoseLoginGoogleOrPhp : $whatDoseLoginGoogleOrPhp");
     });
   }
 
-  // Future readToken() async {
-  //   // WidgetsFlutterBinding.ensureInitialized();
-  //   final SharedPreferences prefs = await SharedPreferences.getInstance();
-  //   setState(() {
-  //     storage = prefs.getString("storage");
-  //     email = prefs.getString("storageEmail");
-  //     pass = prefs.getString("storagePass");
-  //     whatDoseLoginGoogleOrPhp = prefs.getInt("storageId");
-
-  //     print("storage : $storage");
-  //     print("email : $email");
-  //     print("pass : $pass");
-  //   });
-  // }
-
-  // Future readTokenGoogle() async {
-  //   // WidgetsFlutterBinding.ensureInitialized();
-  //   final SharedPreferences prefs = await SharedPreferences.getInstance();
-  //   setState(() {
-  //     usernameGoogle = prefs.getString("storage");
-  //     emailGoogle = prefs.getString("storageEmail");
-  //     avatarGoogle = prefs.getString("storagePass");
-  //     whatDoseLoginGoogleOrPhp = prefs.getInt("storageId");
-
-  //     print("main usernameGoogle : $usernameGoogle");
-  //     print("main emailGoogle : $emailGoogle");
-  //     print("main avatarGoogle : $avatarGoogle");
-  //   });
-  // }
-
-  Future getData() async {
-    var url = Uri.http(ipconfig, 'getdata.php', {'q': '{http}'});
-    var response = await http.get(url);
-
-    if (response.statusCode == 200) {
-      var red = json.decode(response.body);
-      setState(() {
-        if (whatDoseLoginGoogleOrPhp == 0) {
-          for (var i = 0; i < red.length; i++) {
-            if (storage == red[i]["username"]) {
-              idAuth = int.parse(red[i]["id"]) - 1;
-              storage = red[idAuth]["username"].toString();
-              email = red[idAuth]["email"].toString();
-              pass = red[idAuth]["password"].toString();
-              // for Page Edit
-              controllerUsernameedit.text = storage;
-              controllerPasswordedit.text = pass;
-              controllerEmailedit.text = email;
-
-              // usernameGoogleOrPhp = storage;
-              // emailGoogleOrPhp = email;
-              // passGoogleOrPhp = pass;
-              // storage = username;
-
-              print("home pahe : 0");
-            }
-          }
-        }
-      });
-    }
-  }
+ 
 
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
     GetDataUnversity();
-    // if (whatDoseLoginGoogleOrPhp == 0) {
     readToken();
-    // } else if (whatDoseLoginGoogleOrPhp == 1) {
-    //   readTokenGoogle();
-    // }
-    getData();
+
 
     setState(() {});
   }
